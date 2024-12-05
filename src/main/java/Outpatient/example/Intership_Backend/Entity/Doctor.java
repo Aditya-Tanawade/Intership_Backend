@@ -3,7 +3,6 @@ package Outpatient.example.Intership_Backend.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.*;
 import lombok.*;
 
 @Entity

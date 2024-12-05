@@ -20,6 +20,7 @@ public class Appointment {
 
     private String doctorEmail;
 
+
     @ManyToOne
     @JoinColumn(name = "patient_email")
     private Patient patient;

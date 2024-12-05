@@ -36,7 +36,8 @@ public class SecurityConfig {
                         authorizeRequests
 
                                 .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/doctor/**","/api/patient/**","/appointments/**","/**").permitAll()
+                                .requestMatchers("/api/doctor/**","/api/patient/**","/appointments/**","/api/patient/appointments/**").permitAll()
+                                .requestMatchers("/api/doctor/appointments/approve/**","/api/doctor/appointments/reject/**").permitAll()
                                 .anyRequest().authenticated());
 
         return http.build();
