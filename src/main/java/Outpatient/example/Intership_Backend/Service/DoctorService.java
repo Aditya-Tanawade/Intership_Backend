@@ -25,7 +25,7 @@ public class DoctorService {
     private DoctorRepository doctorRepository;
 
     @Autowired
-      private AppointmentRepository appointmentRepository;
+    private AppointmentRepository appointmentRepository;
 
 
 
@@ -116,14 +116,14 @@ public class DoctorService {
 
     public void approveAppointment(int appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new IllegalArgumentException("Appointment not found"));
-        appointment.setStatus("Accepted");
+        appointment.setStatus("ACCEPTED");
         appointmentRepository.save(appointment);
     }
 
 
     public void rejectAppointment(int appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new IllegalArgumentException("Appointment not found"));
-        appointment.setStatus("Rejected");
+        appointment.setStatus("REJECTED");
         appointmentRepository.save(appointment);
     }
 
@@ -131,12 +131,12 @@ public class DoctorService {
 
     public List<Appointment> getAcceptedAppointments() {
         String doctorEmail = getLoginEmail(); // Replace with your authentication logic
-        return appointmentRepository.findByDoctorEmailAndStatus(doctorEmail, "Accepted");
+        return appointmentRepository.findByDoctorEmailAndStatus(doctorEmail, "ACCEPTED");
     }
 
     public void completeAppointment(int appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow(() -> new IllegalArgumentException("Appointment not found"));
-        appointment.setStatus("Completed");
+        appointment.setStatus("COMPLETED");
         appointmentRepository.save(appointment);
     }
 
@@ -147,4 +147,3 @@ public class DoctorService {
         return appointmentRepository.findByDoctorEmailAndStatusIsNull(doctorEmail);
     }
 }
-

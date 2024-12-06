@@ -32,4 +32,5 @@ public class Appointment {
     private String status;
 
     private String remarks;
+
 }
