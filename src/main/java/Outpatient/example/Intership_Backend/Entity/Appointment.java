@@ -1,6 +1,7 @@
 package Outpatient.example.Intership_Backend.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,8 @@ public class Appointment {
     private String status;
 
     private String remarks;
+
+    @Pattern(regexp = "^(CASH|ONLINE_PAY)$", message = "Payment mode can be Cash or Online Pay")
+    private String paymentmode;
 
 }

@@ -14,7 +14,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String recipientEmail; // Email of the doctor/patient who receives the notification
+    private String recipientEmail;
 
     private String message;
 
