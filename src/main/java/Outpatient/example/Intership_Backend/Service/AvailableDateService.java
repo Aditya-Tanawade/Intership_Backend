@@ -6,11 +6,8 @@ import Outpatient.example.Intership_Backend.Entity.AvailableDate;
 import Outpatient.example.Intership_Backend.Entity.Doctor;
 import Outpatient.example.Intership_Backend.Repository.AvailableDateRepository;
 import Outpatient.example.Intership_Backend.Repository.DoctorRepository;
-import Outpatient.example.Intership_Backend.Repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class AvailableDateService {

@@ -2,14 +2,11 @@ package Outpatient.example.Intership_Backend.Controller;
 
 
 import Outpatient.example.Intership_Backend.Entity.AvailableDate;
-import Outpatient.example.Intership_Backend.Entity.Doctor;
 import Outpatient.example.Intership_Backend.Service.AvailableDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/doctor")

@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -21,7 +20,6 @@ public class Appointment {
 
     private String doctorEmail;
 
-
     @ManyToOne
     @JoinColumn(name = "patient_email")
     private Patient patient;
@@ -34,7 +32,15 @@ public class Appointment {
 
     private String remarks;
 
+    //add
     @Pattern(regexp = "^(CASH|ONLINE_PAY)$", message = "Payment mode can be Cash or Online Pay")
     private String paymentmode;
 
+
+//add new
+
+//    // Mapping to Doctor entity (optional, if you want to directly access the Doctor's details)
+//    @ManyToOne
+//    @JoinColumn(name = "doctor_email", referencedColumnName = "email", insertable = false, updatable = false) // Do not insert/update via doctorEmail
+//    private Doctor doctor;
 }

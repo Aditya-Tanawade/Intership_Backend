@@ -5,6 +5,7 @@ import Outpatient.example.Intership_Backend.Advices.ApiError;
 import Outpatient.example.Intership_Backend.Entity.Appointment;
 import Outpatient.example.Intership_Backend.Entity.Doctor;
 import Outpatient.example.Intership_Backend.Service.DoctorService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,25 +67,35 @@ public class DoctorController {
     }
 
 
+//correct
 
 
     @DeleteMapping("/appointments/{id}")
     public ResponseEntity<?> cancelAppointment(@PathVariable int id) {
-        boolean isCancelled = doctorService.cancelAppointment(id);
-        if (isCancelled) {
-            return ResponseEntity.ok("Appointment cancelled successfully.");
+        try {
+            boolean isCancelled = doctorService.cancelAppointment(id);
+            if (isCancelled) {
+                return ResponseEntity.ok("Appointment cancelled successfully.");
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+        } catch (MessagingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending cancellation email.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
     }
-
 
     @PutMapping("/appointments/approve/{id}")
     public ResponseEntity<String> approveAppointment(@PathVariable int id) {
         try {
             doctorService.approveAppointment(id);
             return ResponseEntity.ok("Appointment approved successfully.");
+        } catch (MessagingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending approval email.");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(404).body("Appointment not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
         }
     }
 
@@ -93,22 +104,28 @@ public class DoctorController {
         try {
             doctorService.rejectAppointment(id);
             return ResponseEntity.ok("Appointment rejected successfully.");
+        } catch (MessagingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending rejection email.");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(404).body("Appointment not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
         }
     }
-
 
     @PutMapping("/appointments/complete/{id}")
     public ResponseEntity<String> completeAppointment(@PathVariable int id) {
         try {
             doctorService.completeAppointment(id);
-            return ResponseEntity.ok("Appointment approved successfully.");
+            return ResponseEntity.ok("Appointment completed successfully.");
+        } catch (MessagingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending completion email.");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(404).body("Appointment not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
         }
     }
-
 
     @GetMapping("/accepted-appointments")
     public ResponseEntity<List<Appointment>> getAcceptedAppointments() {

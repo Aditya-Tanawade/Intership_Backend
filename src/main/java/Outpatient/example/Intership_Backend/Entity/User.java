@@ -1,9 +1,8 @@
 package Outpatient.example.Intership_Backend.Entity;
 
 
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

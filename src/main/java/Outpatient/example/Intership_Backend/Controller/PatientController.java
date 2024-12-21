@@ -3,9 +3,9 @@ package Outpatient.example.Intership_Backend.Controller;
 
 import Outpatient.example.Intership_Backend.Advices.ApiError;
 import Outpatient.example.Intership_Backend.Entity.Appointment;
-import Outpatient.example.Intership_Backend.Entity.Doctor;
 import Outpatient.example.Intership_Backend.Entity.Patient;
 import Outpatient.example.Intership_Backend.Service.PatientService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,13 +65,28 @@ public class PatientController {
     }
 
 
+//    @DeleteMapping("/appointments/{id}")
+//    public ResponseEntity<?> cancelAppointment(@PathVariable int id) {
+//        boolean isCancelled = patientService.cancelAppointment(id);
+//        if (isCancelled) {
+//            return ResponseEntity.ok("Appointment cancelled successfully.");
+//        }
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+//    }
+//till right
     @DeleteMapping("/appointments/{id}")
     public ResponseEntity<?> cancelAppointment(@PathVariable int id) {
-        boolean isCancelled = patientService.cancelAppointment(id);
-        if (isCancelled) {
-            return ResponseEntity.ok("Appointment cancelled successfully.");
+        try {
+            boolean isCancelled = patientService.cancelAppointment(id);
+            if (isCancelled) {
+                return ResponseEntity.ok("Appointment cancelled successfully.");
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
+        } catch (MessagingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to send email notification: " + e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Appointment not found.");
     }
+
 
 }
