@@ -82,6 +82,11 @@ public class PatientService {
         return patientRepository.findByEmail(loginEmail);// Return null if doctor is not found
     }
 
+
+    public Patient getPatientProfile(String email) {
+        return patientRepository.findByEmail(loginEmail);// Return null if doctor is not found
+    }
+
     public List<Patient> getAllDoctors() {
         return patientRepository.findAll();
     }
@@ -198,6 +203,10 @@ public class PatientService {
 
         // Save the payment record in the database
         paymentRepository.save(payment);
+    }
+
+    public Patient getPatientByEmail(String email) {
+        return patientRepository.findByEmail(email);
     }
 
 

@@ -18,9 +18,12 @@ package Outpatient.example.Intership_Backend.Repository;
 import Outpatient.example.Intership_Backend.Entity.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
+@Repository
 public interface AppointmentRepository extends JpaRepository<Appointment,Integer> {
 
     List<Appointment> findByDoctorEmail(String doctorEmail);
@@ -34,8 +37,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Integer
     List<Appointment> findByDoctorEmailAndStatusIsNull(String doctorEmail);
 
 
-    // New method to fetch appointment by ID
-   // Appointment findById(Long id);
+
 
 
 }
