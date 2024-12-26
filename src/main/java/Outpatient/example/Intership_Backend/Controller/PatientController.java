@@ -3,6 +3,7 @@ package Outpatient.example.Intership_Backend.Controller;
 
 import Outpatient.example.Intership_Backend.Advices.ApiError;
 import Outpatient.example.Intership_Backend.Entity.Appointment;
+import Outpatient.example.Intership_Backend.Entity.Doctor;
 import Outpatient.example.Intership_Backend.Entity.Patient;
 import Outpatient.example.Intership_Backend.Service.PatientService;
 import jakarta.mail.MessagingException;
@@ -86,6 +87,13 @@ public class PatientController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to send email notification: " + e.getMessage());
         }
+    }
+
+
+    @GetMapping("/get-all-patients")
+    public ResponseEntity<List<Patient>> getAllPatients() {
+        List<Patient> patients = patientService.getAllPatients();
+        return ResponseEntity.ok(patients);
     }
 
 

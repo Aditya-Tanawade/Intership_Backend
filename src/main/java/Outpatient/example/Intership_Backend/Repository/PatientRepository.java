@@ -9,4 +9,8 @@ public interface PatientRepository extends JpaRepository<Patient,String > {
 
     Patient findByEmail(String email);
 
+    Patient deleteByEmail(String email);
+
+
+    boolean existsByEmail(String email);
 }

@@ -4,7 +4,9 @@ package Outpatient.example.Intership_Backend.Controller;
 import Outpatient.example.Intership_Backend.Advices.ApiError;
 import Outpatient.example.Intership_Backend.Entity.Appointment;
 import Outpatient.example.Intership_Backend.Entity.Doctor;
+import Outpatient.example.Intership_Backend.Service.AppointmentService;
 import Outpatient.example.Intership_Backend.Service.DoctorService;
+import Outpatient.example.Intership_Backend.Service.PatientService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private AppointmentService appointmentService;
+
+
 
 
     @GetMapping("/get-welcome-email")
@@ -139,6 +145,27 @@ public class DoctorController {
         }
     }
 
+
+    @GetMapping("/appointment-requests-count")
+    public ResponseEntity<?> getAppointmentRequestsCount(@RequestParam String doctorEmail) {
+        int count = doctorService.getPendingAppointmentRequestsCountByDoctor(doctorEmail);
+        return ResponseEntity.ok().body(Map.of("count", count));
+    }
+
+    @GetMapping("/accepted-appointments-count")
+    public ResponseEntity<?> getAcceptedAppointmentsCount(@RequestParam String doctorEmail) {
+        int count = doctorService.getAcceptedAppointmentsCountByDoctor(doctorEmail);
+        return ResponseEntity.ok().body(Map.of("count", count));
+    }
+
+    @GetMapping("/patients-count")
+    public ResponseEntity<?> getPatientsCount(@RequestParam String doctorEmail) {
+        int count = doctorService.getTotalPatientsCountByDoctor(doctorEmail);
+        return ResponseEntity.ok().body(Map.of("count", count));
+    }
+
+
+    
 
 
 

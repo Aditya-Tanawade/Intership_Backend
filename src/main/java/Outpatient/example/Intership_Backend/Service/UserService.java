@@ -34,6 +34,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private  PatientService patientService;
 
+    @Autowired
+    private AdminService adminService;
+
 
     public void loadUsers() {
         List<User> loadingAdmins = Arrays.asList(
@@ -136,6 +139,8 @@ public class UserService implements UserDetailsService {
 
         switch (userRole) {
             case "ADMIN":
+                adminService.loginAdmin(loginRequest);
+
                 return ApiError.builder()
                         .status(HttpStatus.OK)
                         .message("Admin login successful")

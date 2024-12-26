@@ -1,6 +1,7 @@
 package Outpatient.example.Intership_Backend.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Prescription
 
     @ManyToOne
     @JoinColumn(name = "doctor_email")
+    @JsonBackReference
     private Doctor doctor;
 
 

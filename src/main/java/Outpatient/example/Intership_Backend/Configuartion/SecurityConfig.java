@@ -31,7 +31,7 @@ public class SecurityConfig {
 
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/doctor/**","/api/patient/**","/appointments/**","/notifications/**","/feedback/**","/**").permitAll()
-                                .requestMatchers("/prescriptions/**","/prescriptions").permitAll()
+                                .requestMatchers("/prescriptions/**","/prescriptions","/api/admin/**","/api/admin/delete/**").permitAll()
                                 .anyRequest().authenticated());
 
         return http.build();

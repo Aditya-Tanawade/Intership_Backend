@@ -188,7 +188,7 @@ public class AppointmentService {
             throw new IllegalArgumentException("Appointment with ID " + id + " does not exist.");
         }
     }
-//till right code
+
 public Appointment finalizeAppointment(String appointmentId) {
     Optional<Appointment> optionalAppointment = appointmentRepository.findById(Integer.valueOf(appointmentId));
 
@@ -200,5 +200,7 @@ public Appointment finalizeAppointment(String appointmentId) {
     appointment.setStatus("BOOKED"); // Mark the appointment as booked
     return appointmentRepository.save(appointment);
 }
+
+
 
 }

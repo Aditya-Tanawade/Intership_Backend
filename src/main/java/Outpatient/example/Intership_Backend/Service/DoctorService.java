@@ -373,5 +373,24 @@ public class DoctorService {
     }
 
 
+
+
+    public int getPendingAppointmentRequestsCountByDoctor(String doctorEmail) {
+        return appointmentRepository.countByStatusAndDoctorEmail("PENDING", doctorEmail);
+
+    }
+
+    public int getAcceptedAppointmentsCountByDoctor(String doctorEmail) {
+        return appointmentRepository.countByStatusAndDoctorEmail("ACCEPTED", doctorEmail);
+    }
+
+    public int getCompletedAppointmentsCountByDoctor(String doctorEmail) {
+        return appointmentRepository.countByStatusAndDoctorEmail("COMPLETED", doctorEmail);
+    }
+
+
+    public int getTotalPatientsCountByDoctor(String doctorEmail) {
+        return appointmentRepository.countDistinctPatientsByDoctorEmail(doctorEmail);
+    }
 }
 

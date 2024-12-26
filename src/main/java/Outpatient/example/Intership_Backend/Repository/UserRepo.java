@@ -20,4 +20,5 @@ public interface UserRepo extends JpaRepository<User,Integer> {
     Optional<String> findRoleByEmail(@Param("email") String email);
 
 
+    void deleteByEmail(String email);
 }

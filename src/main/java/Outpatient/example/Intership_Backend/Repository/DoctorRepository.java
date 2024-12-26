@@ -33,6 +33,9 @@ public interface DoctorRepository extends JpaRepository<Doctor, String> {
 
     Doctor findByEmail(String email);
 
+    Doctor deleteByEmail(String email);
+
+    boolean existsByEmail(String email);
 
 }
 
