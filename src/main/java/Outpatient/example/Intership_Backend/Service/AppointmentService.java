@@ -118,10 +118,8 @@ public class AppointmentService {
             // Set the patient for the appointment
             appointment.setPatient(patient);
 
-            // Save the appointment
             Appointment savedAppointment = appointmentRepository.save(appointment);
 
-            // Create a notification for the doctor
             Notification notification = new Notification();
             notification.setRecipientEmail(doctor.getEmail()); // Doctor's email
             notification.setSubject("New Appointment Booked");
@@ -200,7 +198,6 @@ public Appointment finalizeAppointment(String appointmentId) {
     appointment.setStatus("BOOKED"); // Mark the appointment as booked
     return appointmentRepository.save(appointment);
 }
-
 
 
 }

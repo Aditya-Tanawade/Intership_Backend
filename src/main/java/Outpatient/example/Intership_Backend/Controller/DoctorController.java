@@ -147,22 +147,28 @@ public class DoctorController {
 
 
     @GetMapping("/appointment-requests-count")
-    public ResponseEntity<?> getAppointmentRequestsCount(@RequestParam String doctorEmail) {
-        int count = doctorService.getPendingAppointmentRequestsCountByDoctor(doctorEmail);
+    public ResponseEntity<?> getAppointmentRequestsCount() {
+        int count = doctorService.getPendingAppointmentRequestsCountByDoctor();
         return ResponseEntity.ok().body(Map.of("count", count));
     }
 
     @GetMapping("/accepted-appointments-count")
-    public ResponseEntity<?> getAcceptedAppointmentsCount(@RequestParam String doctorEmail) {
-        int count = doctorService.getAcceptedAppointmentsCountByDoctor(doctorEmail);
+    public ResponseEntity<?> getAcceptedAppointmentsCount() {
+        int count = doctorService.getAcceptedAppointmentsCountByDoctor();
         return ResponseEntity.ok().body(Map.of("count", count));
     }
 
-    @GetMapping("/patients-count")
-    public ResponseEntity<?> getPatientsCount(@RequestParam String doctorEmail) {
-        int count = doctorService.getTotalPatientsCountByDoctor(doctorEmail);
+    @GetMapping("/completed-appointments-count")
+    public ResponseEntity<?> getCompletedAppointmentsCount() {
+        int count = doctorService.getCompletedAppointmentsCountByDoctor();
         return ResponseEntity.ok().body(Map.of("count", count));
     }
+
+//    @GetMapping("/patients-count")
+//    public ResponseEntity<?> getPatientsCount() {
+//        int count = doctorService.getTotalPatientsCountByDoctor();
+//        return ResponseEntity.ok().body(Map.of("count", count));
+//    }
 
 
     

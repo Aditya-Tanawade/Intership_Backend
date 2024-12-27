@@ -375,22 +375,27 @@ public class DoctorService {
 
 
 
-    public int getPendingAppointmentRequestsCountByDoctor(String doctorEmail) {
-        return appointmentRepository.countByStatusAndDoctorEmail("PENDING", doctorEmail);
+//    public int getPendingAppointmentRequestsCountByDoctor(String doctorEmail) {
+//        return appointmentRepository.countByStatusAndDoctorEmail("", doctorEmail);
+//
+//    }
 
-    }
-
-    public int getAcceptedAppointmentsCountByDoctor(String doctorEmail) {
-        return appointmentRepository.countByStatusAndDoctorEmail("ACCEPTED", doctorEmail);
-    }
-
-    public int getCompletedAppointmentsCountByDoctor(String doctorEmail) {
-        return appointmentRepository.countByStatusAndDoctorEmail("COMPLETED", doctorEmail);
+    public int getPendingAppointmentRequestsCountByDoctor() {
+        return appointmentRepository.countByStatusIsNullAndDoctorEmail(loginEmail);
     }
 
 
-    public int getTotalPatientsCountByDoctor(String doctorEmail) {
-        return appointmentRepository.countDistinctPatientsByDoctorEmail(doctorEmail);
+    public int getAcceptedAppointmentsCountByDoctor() {
+        return appointmentRepository.countByStatusAndDoctorEmail("ACCEPTED", loginEmail);
     }
+
+    public int getCompletedAppointmentsCountByDoctor() {
+        return appointmentRepository.countByStatusAndDoctorEmail("COMPLETED", loginEmail);
+    }
+
+
+//    public int getTotalPatientsCountByDoctor() {
+//        return appointmentRepository.countDistinctPatientsAndStatusIsNullByDoctorEmail(loginEmail);
+//    }
 }
 

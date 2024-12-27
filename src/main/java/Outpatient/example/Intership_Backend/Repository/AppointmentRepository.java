@@ -22,10 +22,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment,Integer> {
+
+    Optional<Appointment> findById(Long id);  // Get appointment by its ID
+
 
     List<Appointment> findByDoctorEmail(String doctorEmail);
 
@@ -51,5 +54,15 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Integer
 
 
     int countPatientsByDoctorEmail(String loginEmail);
+
+    int countByStatusIsNullAndDoctorEmail(String doctorEmail);
+
+    int countDistinctPatientsAndStatusIsNullByDoctorEmail(String loginEmail);
+
+    int countByStatusIsNullAndPatientEmail(String loginEmail);
+
+    int countByStatusAndPatientEmail(String completed, String loginEmail);
+
+
 
 }

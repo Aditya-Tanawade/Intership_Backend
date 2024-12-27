@@ -214,6 +214,12 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
+    public int getPendingAppointmentRequestsCountByPatient() {
+        return appointmentRepository.countByStatusIsNullAndPatientEmail(loginEmail);
+    }
 
 
+    public int getCompletedAppointmentsCountByPatient() {
+        return appointmentRepository.countByStatusAndPatientEmail("COMPLETED",loginEmail);
+    }
 }

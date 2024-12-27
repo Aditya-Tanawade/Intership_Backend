@@ -97,4 +97,19 @@ public class PatientController {
     }
 
 
+    @GetMapping("/pending-appointments-count")
+    public ResponseEntity<?> getAppointmentRequestsCount() {
+        int count = patientService.getPendingAppointmentRequestsCountByPatient();
+        return ResponseEntity.ok().body(Map.of("count", count));
+    }
+
+    @GetMapping("/completed-appointments-count")
+    public ResponseEntity<?> getAcceptedAppointmentsCount() {
+        int count = patientService.getCompletedAppointmentsCountByPatient();
+        return ResponseEntity.ok().body(Map.of("count", count));
+    }
+
+
+
+
 }

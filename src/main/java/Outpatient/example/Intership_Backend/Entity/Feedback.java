@@ -15,11 +15,14 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String patientEmail;
-    private String doctorEmail;
+    private String patientName;  // Name of the patient
+    private String doctorName;   // Name of the doctor
+
     private String comment;
 
     @Column(nullable = false)
     private int rating;
+
+    private int likes; // Add a field to track likes
 
 }
