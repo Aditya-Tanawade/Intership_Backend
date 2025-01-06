@@ -66,7 +66,7 @@ public class PatientController {
     }
 
 
-//    @DeleteMapping("/appointments/{id}")
+    //    @DeleteMapping("/appointments/{id}")
 //    public ResponseEntity<?> cancelAppointment(@PathVariable int id) {
 //        boolean isCancelled = patientService.cancelAppointment(id);
 //        if (isCancelled) {
@@ -109,6 +109,17 @@ public class PatientController {
         return ResponseEntity.ok().body(Map.of("count", count));
     }
 
+
+    //new
+    @GetMapping("/get-patient/{email}")
+    public ResponseEntity<Patient> getPatientByEmail(@PathVariable String email) {
+        Patient patient = patientService.getPatientByEmail(email);
+        if (patient != null) {
+            return ResponseEntity.ok(patient);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
 
 

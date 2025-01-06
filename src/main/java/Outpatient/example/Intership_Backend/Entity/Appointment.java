@@ -38,10 +38,6 @@ public class Appointment {
     private String paymentmode;
 
 
-//add new
 
-//    // Mapping to Doctor entity (optional, if you want to directly access the Doctor's details)
-//    @ManyToOne
-//    @JoinColumn(name = "doctor_email", referencedColumnName = "email", insertable = false, updatable = false) // Do not insert/update via doctorEmail
-//    private Doctor doctor;
+
 }

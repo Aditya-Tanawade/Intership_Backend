@@ -58,14 +58,14 @@ public class PaymentService {
         }
     }
 
-public boolean verifyPayment(String sessionId) {
-    try {
-        Session session = Session.retrieve(sessionId);
-        return "paid".equalsIgnoreCase(session.getPaymentStatus());
-    } catch (Exception e) {
-        return false;
+    public boolean verifyPayment(String sessionId) {
+        try {
+            Session session = Session.retrieve(sessionId);
+            return "paid".equalsIgnoreCase(session.getPaymentStatus());
+        } catch (Exception e) {
+            return false;
+        }
     }
-}
 
     public void savePaymentDetails(double amount, String appointmentId, String doctorEmail, String patientEmail) {
         // Fetch the patient by their email
@@ -84,6 +84,7 @@ public boolean verifyPayment(String sessionId) {
 
         // Save the payment record in the database
         paymentRepository.save(payment);
+
     }
 
 
